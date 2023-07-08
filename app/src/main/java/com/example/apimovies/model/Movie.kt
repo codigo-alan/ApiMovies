@@ -1,8 +1,10 @@
 package com.example.apimovies.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Movie(
     val id: Int,
-    val originalLanguage: String,
-    val originalTitle: String,
-    val popularity: Int
+    @SerializedName("original_title") val originalTitle: String,
+    @SerializedName("original_language") val originalLanguage: String,
+    val popularity: Double
 )
