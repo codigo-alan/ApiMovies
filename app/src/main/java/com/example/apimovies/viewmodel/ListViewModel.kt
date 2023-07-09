@@ -1,5 +1,6 @@
 package com.example.apimovies.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +11,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ListViewModel: ViewModel() {
-    private val repository = Repository()
-    var movies = MutableLiveData<List<Movie>>().apply { value = listOf() }
+    private val _repository = Repository()
+
+    private val _movies = MutableLiveData<List<Movie>>().apply { value = listOf() }
+    val movies: LiveData<List<Movie>> = _movies
+
+    private val _selectedMovie = MutableLiveData<Movie>()
+    val selectedMovie: LiveData<Movie> = _selectedMovie
+
 
     init {
         fetchData()
@@ -21,9 +28,13 @@ class ListViewModel: ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 //obtain from repo the data obtained from API
-                repository.fetchData("movie?")
+                _repository.fetchData("movie?")
             }
-            movies.postValue(repository.movies.value)
+            _movies.postValue(_repository.movies.value)
         }
+    }
+
+    fun setSelectedMovie(clickedMovie: Movie){
+        _selectedMovie.postValue(clickedMovie)
     }
 }

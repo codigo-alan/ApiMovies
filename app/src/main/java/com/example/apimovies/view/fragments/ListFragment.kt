@@ -46,10 +46,15 @@ class ListFragment : Fragment(), OnClickListener {
             adapter = movieAdapter
         }
 
+        model.movies.observe(viewLifecycleOwner){
+            movieAdapter.setMovies(it)
+        }
+
     }
 
     override fun onClick(movie: Movie) {
         Toast.makeText(context,"Clicked",Toast.LENGTH_SHORT).show()
+        model.setSelectedMovie(movie)
         findNavController().navigate(R.id.action_listFragment_to_detailFragment)
     }
 
