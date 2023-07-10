@@ -1,13 +1,16 @@
 package com.example.apimovies.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.SearchView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apimovies.R
@@ -39,7 +42,7 @@ class ListFragment : Fragment(), OnClickListener {
 
         movieAdapter = MovieAdapter(model.movies.value!!, this)
 
-        linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager = GridLayoutManager(context, 2)
         binding.recyclerListMovies.apply {
             setHasFixedSize(true)
             layoutManager = linearLayoutManager
@@ -50,10 +53,16 @@ class ListFragment : Fragment(), OnClickListener {
             movieAdapter.setMovies(it)
         }
 
+        binding.filterEt.addTextChangedListener { userFilter ->
+            val moviesEdited = model.movies.value?.filter { movie ->
+                movie.originalTitle.lowercase().contains(userFilter.toString().lowercase()) }
+            movieAdapter.setMovies(moviesEdited ?: listOf())
+        }
+
+
     }
 
     override fun onClick(movie: Movie) {
-        Toast.makeText(context,"Clicked",Toast.LENGTH_SHORT).show()
         model.setSelectedMovie(movie)
         findNavController().navigate(R.id.action_listFragment_to_detailFragment)
     }

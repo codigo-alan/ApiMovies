@@ -24,7 +24,7 @@ class ListViewModel: ViewModel() {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 //obtain from repo the data obtained from API

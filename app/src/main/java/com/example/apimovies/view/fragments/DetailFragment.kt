@@ -29,7 +29,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.exampleText.text = model.selectedMovie.value?.originalTitle ?: "No data"
+        binding.exampleText.text = model.selectedMovie.value?.originalTitle
 
         //To list button
         binding.toListBtn.setOnClickListener {
