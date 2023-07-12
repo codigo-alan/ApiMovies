@@ -30,22 +30,4 @@ interface ApiInterface {
 
     }
 
-    /*companion object {
-        private const val BASE_URL = "https://api.themoviedb.org/3/discover/movie?/"
-
-        suspend fun getFromApi(urlParams: String): okhttp3.Response {
-            return withContext(Dispatchers.IO) {
-                val request = Request.Builder()
-                    .url("${BASE_URL}${urlParams}")
-                    .addHeader("accept", "application/json")
-                    .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1OWU4ZWM1NzE5NGFlOWYwNDZmZmM1NGQ4Y2M4MTg4OCIsInN1YiI6IjY0YTY4NWI3MDM5OGFiMDE0ZWRmMzhmZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qEV7qZdfQYJmgVvoaGmK85nWJoKjZK2REICj7EwrlKM")
-                    .build()
-
-                OkHttpClient().newCall(request).execute()
-            }
-        }
-    }*/
-
-
-
 }

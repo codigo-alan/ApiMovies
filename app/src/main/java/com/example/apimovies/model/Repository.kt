@@ -11,14 +11,19 @@ class Repository {
 
     var movies = MutableLiveData<List<Movie>>()
     var selectedMovie = MutableLiveData<Movie>()
+    val successfulQuery = MutableLiveData<Boolean>()
 
     suspend fun fetchData(url: String) {
         val response = apiInterface.getData(url + API_KEY)
         if(response.isSuccessful) {
             movies.postValue(response.body()!!.movies)
-            Log.d("apiResponse", "${response.body()!!.movies}")
+            Log.d("apiResponse", "${response.body()!!.movies}") //for dev
+            successfulQuery.postValue(true)
         }
-        else movies.postValue(listOf())
+        else{
+            movies.postValue(listOf())
+            successfulQuery.postValue(false)
+        }
     }
 
 }

@@ -19,6 +19,8 @@ class ListViewModel: ViewModel() {
     private val _selectedMovie = MutableLiveData<Movie>()
     val selectedMovie: LiveData<Movie> = _selectedMovie
 
+    private val _successfulQuery = MutableLiveData<Boolean>()
+    val successfulQuery: LiveData<Boolean> = _successfulQuery
 
     init {
         fetchData()
@@ -31,6 +33,7 @@ class ListViewModel: ViewModel() {
                 _repository.fetchData("movie?")
             }
             _movies.postValue(_repository.movies.value)
+            _successfulQuery.postValue(_repository.successfulQuery.value)
         }
     }
 

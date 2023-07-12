@@ -53,6 +53,23 @@ class ListFragment : Fragment(), OnClickListener {
             movieAdapter.setMovies(it)
         }
 
+        model.successfulQuery.observe(viewLifecycleOwner){
+            if (it && model.movies.value!!.isEmpty()) {
+                binding.gridLayout.visibility = View.GONE
+                binding.recyclerListMovies.visibility = View.GONE
+                binding.noDataTv.visibility = View.VISIBLE
+            }
+            if (it && model.movies.value!!.isNotEmpty()) {
+                binding.gridLayout.visibility = View.GONE
+                binding.recyclerListMovies.visibility = View.VISIBLE
+                binding.noDataTv.visibility = View.GONE
+            }
+            if (!it) {
+                binding.gridLayout.visibility = View.GONE
+                binding.errorDataTv.visibility = View.VISIBLE
+            }
+        }
+
         binding.filterEt.addTextChangedListener { userFilter ->
             val moviesEdited = model.movies.value?.filter { movie ->
                 movie.originalTitle.lowercase().contains(userFilter.toString().lowercase()) }
