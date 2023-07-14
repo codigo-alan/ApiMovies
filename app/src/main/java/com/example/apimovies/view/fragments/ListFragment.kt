@@ -19,6 +19,7 @@ import com.example.apimovies.adapters.OnClickListener
 import com.example.apimovies.databinding.FragmentListBinding
 import com.example.apimovies.model.Movie
 import com.example.apimovies.viewmodel.ListViewModel
+import com.squareup.picasso.Picasso
 
 
 class ListFragment : Fragment(), OnClickListener {
@@ -75,6 +76,7 @@ class ListFragment : Fragment(), OnClickListener {
                 movie.originalTitle.lowercase().contains(userFilter.toString().lowercase()) }
             movieAdapter.setMovies(moviesEdited ?: listOf())
         }
+
 
 
     }

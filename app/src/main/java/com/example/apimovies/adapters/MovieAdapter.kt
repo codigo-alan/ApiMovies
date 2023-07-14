@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.apimovies.R
 import com.example.apimovies.databinding.ItemMovieBinding
 import com.example.apimovies.model.Movie
+import com.squareup.picasso.Picasso
 
 
 class MovieAdapter(private var movies: List<Movie>, private val listener: OnClickListener): RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
@@ -36,6 +37,11 @@ class MovieAdapter(private var movies: List<Movie>, private val listener: OnClic
         with(holder){
             setListener(movie)
             binding.movieTitleTv.text = movie.originalTitle
+            Picasso.get()
+                .load("https://image.tmdb.org/t/p/original/${movie.posterPath}")
+                .placeholder(R.drawable.edit_rounded)
+                .error(R.drawable.baseline_broken_image_24)
+                .into(binding.imageView);
         }
     }
 

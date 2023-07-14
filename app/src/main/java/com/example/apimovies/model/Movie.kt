@@ -6,5 +6,7 @@ data class Movie(
     val id: Int,
     @SerializedName("original_title") val originalTitle: String,
     @SerializedName("original_language") val originalLanguage: String,
-    val popularity: Double
+    val popularity: Double,
+    @SerializedName("poster_path") val posterPath: String
 )
+
