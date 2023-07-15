@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.apimovies.R
 import com.example.apimovies.databinding.FragmentDetailBinding
+import com.example.apimovies.model.Genre
 import com.example.apimovies.viewmodel.ListViewModel
 import com.squareup.picasso.Picasso
 
@@ -29,24 +30,34 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //observable movie
+        model.selectedMovie.observe(viewLifecycleOwner){
+            getGenresName(it.genres)
 
-        binding.titleTv.text = model.selectedMovie.value?.originalTitle
-        binding.contentTv.text = model.selectedMovie.value?.overview
-        binding.releaseTv.text = model.selectedMovie.value?.releaseDate
-        binding.averageTv.text = "Average qualification: ${model.selectedMovie.value?.voteAverage}"
+            binding.titleTv.text = model.selectedMovie.value?.originalTitle
+            binding.contentTv.text = model.selectedMovie.value?.overview
+            binding.releaseTv.text = model.selectedMovie.value?.releaseDate
+            binding.averageTv.text = "Average qualification: ${model.selectedMovie.value?.voteAverage}"
 
-        Picasso.get()
-            .load("https://image.tmdb.org/t/p/original/${model.selectedMovie.value?.posterPath}")
-            .placeholder(R.drawable.edit_rounded)
-            .error(R.drawable.baseline_broken_image_24)
-            .fit()
-            .into(binding.imageView)
+            Picasso.get()
+                .load("https://image.tmdb.org/t/p/original/${model.selectedMovie.value?.posterPath}")
+                .placeholder(R.drawable.edit_rounded)
+                .error(R.drawable.baseline_broken_image_24)
+                .fit()
+                .into(binding.imageView)
+        }
 
         //Back button
         binding.toListBtn.setOnClickListener {
             findNavController().navigate(R.id.action_detailFragment_to_listFragment)
         }
 
+    }
+
+    private fun getGenresName(genresId: List<Int>) {
+        val genreNames = mutableListOf<String>()
+        model.genres.value?.filter { genre: Genre -> genre.id in genresId }?.forEach { genreNames += it.name}
+        binding.genresTv.text = genreNames.joinToString(", ")
     }
 
 }

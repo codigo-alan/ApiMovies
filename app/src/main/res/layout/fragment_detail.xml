@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.6" />
 
     <TextView
         android:id="@+id/releaseTv"
@@ -85,10 +85,19 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="32dp"
         android:layout_marginHorizontal="8dp"
-        tools:text="Ethan Hunt y su equipo del FMI, se embarcan en su misión más peligrosa hasta la fecha: localizar, antes de que caiga en las manos equivocadas, una nueva y terrorífica arma que amenaza a toda la humanidad. En esta tesitura, y con unas fuerzas oscuras del pasado de Ethan acechando, comienza una carrera mortal alrededor del mundo en la que está en juego el control del futuro y el destino del planeta. Enfrentado a un enemigo misterioso y todopoderoso, Ethan se ve obligado a considerar que nada puede anteponerse a su misión, ni siquiera las vidas de aquellos que más le importan."
+        android:paddingHorizontal="2dp"
         app:layout_constraintStart_toStartOf="@+id/titleTv"
-        app:layout_constraintTop_toBottomOf="@+id/releaseTv"
+        app:layout_constraintTop_toBottomOf="@+id/genresTv"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/genresTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Acción, Drama, Comedia"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/titleTv"
+        app:layout_constraintTop_toBottomOf="@+id/releaseTv" />
 
     <ImageView
         android:id="@+id/imageView2"

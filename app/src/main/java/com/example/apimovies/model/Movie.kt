@@ -10,6 +10,7 @@ data class Movie(
     @SerializedName("release_date") val releaseDate: String,
     val overview: String,
     @SerializedName("vote_average") val voteAverage: String,
+    @SerializedName("genre_ids") val genres: List<Int>,
     @SerializedName("poster_path") val posterPath: String
 )
 
