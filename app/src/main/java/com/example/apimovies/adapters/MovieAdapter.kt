@@ -37,10 +37,13 @@ class MovieAdapter(private var movies: List<Movie>, private val listener: OnClic
         with(holder){
             setListener(movie)
             binding.movieTitleTv.text = movie.originalTitle
+            binding.movieReleaseTv.text = movie.releaseDate
             Picasso.get()
                 .load("https://image.tmdb.org/t/p/original/${movie.posterPath}")
                 .placeholder(R.drawable.edit_rounded)
                 .error(R.drawable.baseline_broken_image_24)
+                .fit()
+                .centerCrop()
                 .into(binding.imageView);
         }
     }
@@ -48,7 +51,7 @@ class MovieAdapter(private var movies: List<Movie>, private val listener: OnClic
 
     fun setMovies(newListMovies: List<Movie>) {
         movies = newListMovies
-        notifyDataSetChanged() //it`s like a refresh
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

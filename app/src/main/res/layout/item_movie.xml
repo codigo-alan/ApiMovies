@@ -4,61 +4,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="128dp"
+    android:layout_height="256dp"
     android:background="@color/white"
     android:layout_margin="4dp"
-    android:padding="4dp"
     android:clickable="true"
     android:focusable="true"
-    app:contentPadding="4dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
-         android:layout_width="match_parent">
+        android:layout_width="match_parent">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@mipmap/ic_launcher" />
+             />
 
         <TextView
             android:id="@+id/movieTitleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:background="@drawable/text_rounded"
             android:padding="4dp"
             android:maxLines="1"
-            android:text="TextView"
+            tools:text="Movie title"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <TextView
-            android:id="@+id/movieGenreTv"
+            android:id="@+id/movieReleaseTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:background="@drawable/text_rounded"
-            android:padding="2dp"
-            android:text="TextView"
+            android:fontFamily="sans-serif"
+            android:padding="4dp"
+            tools:text="1951-11-1"
             android:textSize="12sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.6"
             app:layout_constraintTop_toBottomOf="@+id/movieTitleTv" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -66,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     

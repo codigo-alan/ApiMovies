@@ -43,7 +43,7 @@ class ListFragment : Fragment(), OnClickListener {
 
         movieAdapter = MovieAdapter(model.movies.value!!, this)
 
-        linearLayoutManager = GridLayoutManager(context, 2)
+        linearLayoutManager = GridLayoutManager(context, 3)
         binding.recyclerListMovies.apply {
             setHasFixedSize(true)
             layoutManager = linearLayoutManager
