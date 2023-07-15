@@ -8,6 +8,8 @@ data class Movie(
     @SerializedName("original_language") val originalLanguage: String,
     val popularity: Double,
     @SerializedName("release_date") val releaseDate: String,
+    val overview: String,
+    @SerializedName("vote_average") val voteAverage: String,
     @SerializedName("poster_path") val posterPath: String
 )
 

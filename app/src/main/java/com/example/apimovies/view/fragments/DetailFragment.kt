@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.apimovies.R
 import com.example.apimovies.databinding.FragmentDetailBinding
 import com.example.apimovies.viewmodel.ListViewModel
+import com.squareup.picasso.Picasso
 
 
 class DetailFragment : Fragment() {
@@ -29,9 +30,19 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.exampleText.text = model.selectedMovie.value?.originalTitle
+        binding.titleTv.text = model.selectedMovie.value?.originalTitle
+        binding.contentTv.text = model.selectedMovie.value?.overview
+        binding.releaseTv.text = model.selectedMovie.value?.releaseDate
+        binding.averageTv.text = "Average qualification: ${model.selectedMovie.value?.voteAverage}"
 
-        //To list button
+        Picasso.get()
+            .load("https://image.tmdb.org/t/p/original/${model.selectedMovie.value?.posterPath}")
+            .placeholder(R.drawable.edit_rounded)
+            .error(R.drawable.baseline_broken_image_24)
+            .fit()
+            .into(binding.imageView)
+
+        //Back button
         binding.toListBtn.setOnClickListener {
             findNavController().navigate(R.id.action_detailFragment_to_listFragment)
         }

@@ -44,7 +44,7 @@ class MovieAdapter(private var movies: List<Movie>, private val listener: OnClic
                 .error(R.drawable.baseline_broken_image_24)
                 .fit()
                 .centerCrop()
-                .into(binding.imageView);
+                .into(binding.imageView)
         }
     }
 
